@@ -1,50 +1,54 @@
-# Welcome to your Expo app 👋
+# Vybe
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Vybe is a mobile app built with Expo and React Native. Its current implementation provides Firebase email/password account creation, sign-in, authentication-based routing, and sign-out. The signed-in Home tab is currently a welcome screen, with drawer and tab navigation.
 
-## Get started
+## Stack
 
-1. Install dependencies
+- Expo SDK 53, React Native 0.79.2, React 19, and TypeScript with strict mode.
+- Expo Router 5 for file-based routes in `app/`, with React Navigation.
+- React Native Firebase App and Authentication 22.
+- ESLint 9 with Expo's flat configuration.
 
-   ```bash
-   npm install
-   ```
+## Prerequisites and configuration
 
-2. Start the app
+Use Node.js and npm, plus the native development toolchain for Android or iOS. The root package does not pin a Node.js or npm version.
 
-   ```bash
-   npx expo start
-   ```
+Native Firebase configuration is required by `app.json`. Supply these files at the repository root for the platform you intend to run:
 
-In the output, you'll find options to open the app in a
+| Platform | Configuration file | Application identifier |
+| --- | --- | --- |
+| Android | `google-services.json` | `com.vybe.app` |
+| iOS | `GoogleService-Info.plist` | `com.vybe.app` |
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Both configuration files are ignored by Git and are not included. The Firebase project must support email/password authentication for the implemented login and registration flows.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+No environment variable names are referenced in the application source or configuration. Firebase is configured through the native files above, not a documented `.env` setup.
 
-## Get a fresh project
+## Local setup and commands
 
-When you're ready, run:
+Install dependencies from the repository root:
 
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+The following commands are defined in `package.json`:
 
-## Learn more
+| Command | Action |
+| --- | --- |
+| `npm run android` | Build and run Android with `expo run:android`. |
+| `npm run ios` | Build and run iOS with `expo run:ios`. |
+| `npm start` | Start the Expo development server with `expo start`. |
+| `npm run web` | Start the web development server with `expo start --web`. |
+| `npm run lint` | Run ESLint through `expo lint`. |
 
-To learn more about developing your project with Expo, look at the following resources:
+After supplying Firebase configuration, use the Android or iOS command to build and run the native app. For subsequent development-server sessions, use `npm start` (equivalently, `npx expo start`).
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Edit screens and layouts in `app/`. Authentication is implemented in `app/(auth)/Auth.tsx`; the Home screen is in `app/(home)/(homeTabs)/index.tsx`.
 
-## Join the community
+## Current limitations
 
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- Web is configured for Metro with static output, but authentication imports native Firebase directly and has no web-specific implementation.
+- No automated test files or test script are present.
+- `npm run reset-project` references `scripts/reset-project.js`, which is absent. Do not use it for setup.
+- No production build or deployment scripts are defined.
