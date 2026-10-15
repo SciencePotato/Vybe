@@ -21,10 +21,10 @@ export default function Index() {
 		setLoading(true);
 		try {
 			await auth().createUserWithEmailAndPassword(email, password);
-			alert('Check your emails!');
+			alert('Account created.');
 		} catch (e: any) {
 			const err = e as FirebaseError;
-			alert('Registration failed: ' + err.message);
+			alert('Could not create account: ' + err.message);
 		} finally {
 			setLoading(false);
 		}
@@ -36,7 +36,7 @@ export default function Index() {
 			await auth().signInWithEmailAndPassword(email, password);
 		} catch (e: any) {
 			const err = e as FirebaseError;
-			alert('Sign in failed: ' + err.message);
+			alert('Could not sign in: ' + err.message);
 		} finally {
 			setLoading(false);
 		}
@@ -64,7 +64,7 @@ export default function Index() {
 					<ActivityIndicator size={'small'} style={{ margin: 28 }} />
 				) : (
 					<>
-						<Button onPress={signIn} title="Login" />
+						<Button onPress={signIn} title="Sign in" />
 						<Button onPress={signUp} title="Create account" />
 					</>
 				)}

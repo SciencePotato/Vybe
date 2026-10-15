@@ -34,16 +34,16 @@ const HomeTabs = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Welcome to Home Tabs!</Text>
-            <Button 
+            <Text style={styles.text}>Welcome to Vybe!</Text>
+            <Button
                 onPress={() => {
                     if (user) {
                         auth().signOut();
                     } else {
                         router.replace('/(auth)/Auth');
                     }
-                }} 
-		title={user ? "Sign Out" : "Sign In"} 
+                }}
+		title={user ? "Sign out" : "Sign in"}
 	  />
         </View>
     );
