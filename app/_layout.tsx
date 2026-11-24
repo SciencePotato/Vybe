@@ -6,7 +6,7 @@ import { useRouter } from "expo-router";
 import CustomDrawerContent from "@/components/customDrawer";
 
 const RootLayout = () => {
-  const [initializing, setInitializing] = useState(auth()?.currentUser === null);
+  const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
   const router = useRouter();
 
