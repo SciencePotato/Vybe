@@ -27,6 +27,10 @@ You can start developing by editing the files inside the **app** directory. This
 
 ## Get a fresh project
 
+Authentication observers do not log Firebase account objects. The mocked observer
+regressions run with `node --test tests/auth-observer-privacy.test.mjs` and do not
+connect to Firebase.
+
 When you're ready, run:
 
 ```bash

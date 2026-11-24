@@ -8,7 +8,6 @@ const HomeTabs = () => {
     const router = useRouter();
 
     const onAuthStateChanged = (user: FirebaseAuthTypes.User | null) => {
-		console.log('onAuthStateChanged', user);
 		setUser(user);
 	};
 
