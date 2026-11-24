@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import {
 	Text,
 	View,
@@ -16,8 +16,11 @@ export default function Index() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [loading, setLoading] = useState(false);
+	const submitting = useRef(false);
 
 	const signUp = async () => {
+		if (submitting.current) return;
+		submitting.current = true;
 		setLoading(true);
 		try {
 			await auth().createUserWithEmailAndPassword(email, password);
@@ -26,11 +29,14 @@ export default function Index() {
 			const err = e as FirebaseError;
 			alert('Registration failed: ' + err.message);
 		} finally {
+			submitting.current = false;
 			setLoading(false);
 		}
 	};
 
 	const signIn = async () => {
+		if (submitting.current) return;
+		submitting.current = true;
 		setLoading(true);
 		try {
 			await auth().signInWithEmailAndPassword(email, password);
@@ -38,6 +44,7 @@ export default function Index() {
 			const err = e as FirebaseError;
 			alert('Sign in failed: ' + err.message);
 		} finally {
+			submitting.current = false;
 			setLoading(false);
 		}
 	};

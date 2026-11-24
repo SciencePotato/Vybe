@@ -27,6 +27,10 @@ You can start developing by editing the files inside the **app** directory. This
 
 ## Get a fresh project
 
+Authentication submissions are mutually exclusive, including taps before the loading
+indicator renders. Failed registration keeps the edited fields available for retry.
+Run `node --test tests/auth-submission.test.mjs` for the provider-mocked regressions.
+
 When you're ready, run:
 
 ```bash
