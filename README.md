@@ -27,6 +27,15 @@ You can start developing by editing the files inside the **app** directory. This
 
 ## Get a fresh project
 
+Credential fields disable native keyboard autocorrection and capitalization.
+Check the rendered input properties without contacting Firebase:
+
+```bash
+node --test tests/credential-keyboard.test.cjs
+```
+
+This mocked check does not test a device keyboard or Firebase authentication.
+
 When you're ready, run:
 
 ```bash
