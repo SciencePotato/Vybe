@@ -36,9 +36,13 @@ const HomeTabs = () => {
         <View style={styles.container}>
             <Text style={styles.text}>Welcome to Home Tabs!</Text>
             <Button 
-                onPress={() => {
+                onPress={async () => {
                     if (user) {
-                        auth().signOut();
+                        try {
+                            await auth().signOut();
+                        } catch {
+                            alert('Sign out failed. Please try again.');
+                        }
                     } else {
                         router.replace('/(auth)/Auth');
                     }
