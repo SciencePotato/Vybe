@@ -10,18 +10,30 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    npm install
    ```
 
-2. Start the app
+2. Configure native Firebase
+
+   This app imports `@react-native-firebase/app` and `@react-native-firebase/auth`.
+   **It cannot run in Expo Go**: those native modules are not included in Expo Go.
+   Use Firebase configuration for your own project and the bundle/package ID
+   `com.vybe.app`. The paths configured in `app.json` are `GoogleService-Info.plist`
+   for iOS and `google-services.json` for Android. Do not commit private credentials.
+
+3. Build and run the native app
+
+   With Xcode installed on macOS for iOS, or Android Studio and an Android SDK for Android:
 
    ```bash
-   npx expo start
+   npm run ios
+   # or
+   npm run android
    ```
 
-In the output, you'll find options to open the app in a
+   These scripts run `expo run:ios` / `expo run:android`, compiling the native
+   Firebase modules. Rebuild after changing native dependencies or Firebase config.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+For subsequent JavaScript changes, `npm start` starts Metro for the installed
+native app. See [React Native Firebase's Expo setup](https://rnfirebase.io/#expo)
+and the [Expo native build guide](https://docs.expo.dev/workflow/run-on-device/).
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
