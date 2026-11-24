@@ -24,14 +24,15 @@ const RootLayout = () => {
   useEffect(() => {
     if (initializing) return;
 
-    setTimeout(() => {
+    const redirectTimer = setTimeout(() => {
       if (user) {
         router.replace("/(home)/(homeTabs)");
       } else {
         router.replace("/(auth)/Auth");
       }
     }, 100);
-  }, [user, initializing])
+    return () => clearTimeout(redirectTimer);
+  }, [user, initializing, router])
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>

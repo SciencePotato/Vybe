@@ -37,6 +37,10 @@ This command will move the starter code to the **app-example** directory and cre
 
 ## Learn more
 
+The delayed authentication redirect is canceled when authentication changes or
+the root layout unmounts. After installing dependencies, run its native-mocked
+regression check with `node --test tests/auth-redirect.test.mjs`.
+
 To learn more about developing your project with Expo, look at the following resources:
 
 - [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
