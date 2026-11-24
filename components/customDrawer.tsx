@@ -1,14 +1,11 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
     DrawerContentScrollView,
     DrawerItemList,
   } from '@react-navigation/drawer';
   
 export default function CustomDrawerContent(props: any) {
-    const [filteredProps, setFilteredProps] = React.useState(props);
-
-    useEffect(() => {
-        const filteredRoutes = props.state.routes.filter(
+    const filteredRoutes = props.state.routes.filter(
             (route: any) => route.name !== '(auth)/Auth'
         );
         
@@ -20,18 +17,19 @@ export default function CustomDrawerContent(props: any) {
         )
         );
 
+        const activeKey = props.state.routes[props.state.index]?.key;
         const filteredState = {
         ...props.state,
         routes: filteredRoutes,
         routeNames: filteredRoutes.map((r: any) => r.name),
+        index: Math.max(0, filteredRoutes.findIndex((route: any) => route.key === activeKey)),
         };
 
-        setFilteredProps({
+        const filteredProps = {
         ...props,
         state: filteredState,
         descriptors: filteredDescriptors,
-        })
-    }, []);
+        };
 
     return (
       <DrawerContentScrollView {...filteredProps}>
