@@ -11,7 +11,6 @@ const RootLayout = () => {
   const router = useRouter();
 
   const onAuthStateChanged = (user: FirebaseAuthTypes.User | null) => {
-		console.log('onAuthStateChanged', user);
 		setUser(user);
 		if (initializing) setInitializing(false);
 	};
