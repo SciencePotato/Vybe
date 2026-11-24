@@ -50,6 +50,7 @@ export default function Index() {
 					value={email}
 					onChangeText={setEmail}
 					autoCapitalize="none"
+					autoCorrect={false}
 					keyboardType="email-address"
 					placeholder="Email"
 				/>
@@ -58,6 +59,8 @@ export default function Index() {
 					value={password}
 					onChangeText={setPassword}
 					secureTextEntry
+					autoCapitalize="none"
+					autoCorrect={false}
 					placeholder="Password"
 				/>
 				{loading ? (
