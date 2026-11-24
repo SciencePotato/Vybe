@@ -27,6 +27,10 @@ You can start developing by editing the files inside the **app** directory. This
 
 ## Get a fresh project
 
+Initial routing waits for Firebase's first auth-state emission even when a cached
+account exists. Run `node --test tests/initial-auth.test.mjs` for the fully mocked
+cached-account and signed-out startup checks.
+
 When you're ready, run:
 
 ```bash
